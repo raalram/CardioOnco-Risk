@@ -51,6 +51,8 @@ hr { margin: 1rem 0; border: 0; border-top: 1px solid rgba(0,0,0,.1); }
 .home-card { margin-top: 0; }
 .home-card { overflow: hidden; border: 0; }
 .home-card > .card-header { color: #fff; background: linear-gradient(135deg, #174a5b, #217b8f); }
+.home-card-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.home-card-logo { display: block; width: 96px; height: 96px; flex: 0 0 auto; object-fit: cover; background: #fff; border: 3px solid rgba(255,255,255,.85); border-radius: 10px; }
 main > h2 { color: #174a5b; font-weight: 700; }
 
 .form-group { margin-bottom: 1rem; }
@@ -176,6 +178,12 @@ ul { margin-top: 0; }
   .col-3, .col-4, .col-6 { grid-column: span 12; }
   h2 { font-size: 1.65rem; }
   .install-panel { align-items: flex-start; flex-direction: column; }
+}
+
+@media (max-width: 480px) {
+  .home-card-header { gap: .75rem; }
+  .home-card-header h2 { font-size: 1.45rem; }
+  .home-card-logo { width: 76px; height: 76px; border-width: 2px; border-radius: 8px; }
 }
 
 @media print {
