@@ -1,6 +1,6 @@
 "use strict";
 
-const CACHE_NAME = "cardioonco-risk-mobile-v1";
+const CACHE_NAME = "cardioonco-risk-mobile-v2";
 const APP_SHELL = [
   "./",
   "./index.html",
