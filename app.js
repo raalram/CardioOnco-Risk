@@ -417,7 +417,7 @@ function renderTherapeutic(key) {
 function factorSection(r) { const groups=[["Factores de riesgo muy alto",r.very],["Factores de riesgo alto",r.high],["Moderado 2 — 2 puntos por factor",r.mod2],["Moderado 1 — 1 punto por factor",r.mod1]]; return `<hr><h3>Factores identificados</h3>${groups.filter(([,a])=>a.length).map(([t,a])=>`<h4>${t}</h4>${list(a)}`).join("")||"<p>No se han identificado factores de riesgo.</p>"}`; }
 function renderTreatmentResult(key,values,result,score,rec) {
   const body=document.getElementById("resultBody");
-  body.innerHTML=`<div class="risk-box ${riskClass(result.risk)}"><h2>Riesgo ${esc(result.risk)}</h2></div>${factorSection(result)}${scoreHtml(score)}${recommendationsHtml(rec)}<button type="button" class="btn btn-success no-print" id="downloadPdf">Descargar informe PDF</button>`;
+  body.innerHTML=`<div class="risk-box ${riskClass(result.risk)}"><h2>Riesgo ${esc(result.risk)} de cardiotoxicidad</h2></div>${factorSection(result)}${scoreHtml(score)}${recommendationsHtml(rec)}<button type="button" class="btn btn-success no-print" id="downloadPdf">Descargar informe PDF</button>`;
   document.getElementById("downloadPdf").onclick=()=>downloadReport({drug:modules[key].drugs.find(d=>d[1]===values.farmaco)?.[0],result,score,rec});
 }
 
@@ -476,7 +476,7 @@ function buildClinicalPdf(data) {
   paragraph(`Fecha del informe: ${new Intl.DateTimeFormat("es-ES",{day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit"}).format(new Date())}`,{after:4});
   paragraph(`Tratamiento: ${data.result.treatment}`,{after:4});
   if(data.drug)paragraph(`Fármaco o esquema: ${data.drug}`,{after:4});
-  ensure(100);y-=6.7;const palette=riskPalette[data.result.risk]||riskPalette["No clasificable"];rect(41.67,y-75.8,512.1,75.8,palette[0],palette[1],1.3);drawText(`RIESGO DE CARDIOTOXICIDAD ${data.result.risk.toUpperCase()}`,53.6,y-33.5,18,true,palette[2]);y-=94.3;
+  ensure(100);y-=6.7;const palette=riskPalette[data.result.risk]||riskPalette["No clasificable"],riskLabel=`RIESGO ${data.result.risk.toUpperCase()} DE CARDIOTOXICIDAD`,riskFontSize=Math.min(18,476/(riskLabel.length*.54));rect(41.67,y-75.8,512.1,75.8,palette[0],palette[1],1.3);drawText(riskLabel,53.6,y-33.5,riskFontSize,true,palette[2]);y-=94.3;
   const score=data.score,scoreIndicator={"Bajo":"#198754","Moderado":"#FFC107","Alto":"#FD7E14","Muy alto":"#DC3545"}[score.category]||"#6C757D";
   section("Riesgo cardiovascular global",scoreIndicator);
   if(score.applicable){paragraph(`${score.model}: ${score.risk10}% a 10 años - categoría ${score.category.toLowerCase()}.`,{bold:true,color:"#174A5B"});paragraph("Estimación de un primer evento cardiovascular mortal o no mortal.");}
