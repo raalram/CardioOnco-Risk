@@ -55,6 +55,38 @@ hr { margin: 1rem 0; border: 0; border-top: 1px solid rgba(0,0,0,.1); }
 .home-card-logo { display: block; width: 96px; height: 96px; flex: 0 0 auto; object-fit: cover; background: #fff; border: 3px solid rgba(255,255,255,.85); border-radius: 10px; }
 main > h2 { color: #174a5b; font-weight: 700; }
 
+.risk-input-block {
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  border-radius: 14px;
+  box-shadow: 0 .25rem .75rem rgba(23, 74, 91, .08);
+}
+.risk-input-block > .card-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 0;
+  font-size: 1.1rem;
+}
+.score2-input-block,
+.score2-input-block > .card-header {
+  background-color: #eaf4f8;
+  border-color: #9bc8d8;
+}
+.cardiotoxicity-input-block,
+.cardiotoxicity-input-block > .card-header {
+  background-color: #fff3e8;
+  border-color: #efbd91;
+}
+.cardiotoxicity-group-card {
+  height: 100%;
+  margin-bottom: 0;
+  background-color: rgba(255, 255, 255, .82);
+  border-color: #f2cfaf;
+}
+.cardiotoxicity-group-card > .card-header {
+  background-color: rgba(255, 255, 255, .45);
+  border-color: #f2cfaf;
+}
+
 .form-group { margin-bottom: 1rem; }
 label, .form-label { display: inline-block; margin-bottom: .5rem; }
 input[type="text"], input[type="number"], input[type="date"], select {
