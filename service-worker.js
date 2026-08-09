@@ -1,13 +1,13 @@
 "use strict";
 
-const CACHE_NAME = "cardioonco-risk-mobile-v6";
+const CACHE_NAME = "cardioonco-risk-mobile-v7";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./informacion.html",
-  "./styles.css",
-  "./app.js",
-  "./pwa.js",
+  "./styles.css?v=7",
+  "./app.js?v=7",
+  "./pwa.js?v=7",
   "./manifest.webmanifest",
   "./icons/icon-192.png",
   "./icons/icon-512.png",

@@ -42,5 +42,19 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js"));
+  let reloadingForUpdate = false;
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (reloadingForUpdate) return;
+    reloadingForUpdate = true;
+    window.location.reload();
+  });
+
+  window.addEventListener("load", async () => {
+    try {
+      const registration = await navigator.serviceWorker.register("./service-worker.js?v=7", {updateViaCache:"none"});
+      await registration.update();
+    } catch (error) {
+      console.error("No se pudo actualizar la aplicaciÃ³n sin conexiÃ³n.", error);
+    }
+  });
 }
