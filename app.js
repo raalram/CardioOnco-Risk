@@ -417,7 +417,7 @@ function renderTherapeutic(key) {
 function factorSection(r) { const groups=[["Factores de riesgo muy alto",r.very],["Factores de riesgo alto",r.high],["Moderado 2 — 2 puntos por factor",r.mod2],["Moderado 1 — 1 punto por factor",r.mod1]]; return `<hr><h3>Factores identificados</h3>${groups.filter(([,a])=>a.length).map(([t,a])=>`<h4>${t}</h4>${list(a)}`).join("")||"<p>No se han identificado factores de riesgo.</p>"}`; }
 function renderTreatmentResult(key,values,result,score,rec) {
   const body=document.getElementById("resultBody");
-  body.innerHTML=`<div class="risk-box ${riskClass(result.risk)}"><h2>Riesgo ${esc(result.risk)} de cardiotoxicidad</h2></div>${factorSection(result)}${scoreHtml(score)}${recommendationsHtml(rec)}<button type="button" class="btn btn-success no-print" id="downloadPdf">Descargar informe PDF</button>`;
+  body.innerHTML=`<div class="risk-box ${riskClass(result.risk)}"><h2>Riesgo ${esc(result.risk.toLowerCase())} de cardiotoxicidad</h2></div>${factorSection(result)}${scoreHtml(score)}${recommendationsHtml(rec)}<button type="button" class="btn btn-success no-print" id="downloadPdf">Descargar informe PDF</button>`;
   document.getElementById("downloadPdf").onclick=()=>downloadReport({drug:modules[key].drugs.find(d=>d[1]===values.farmaco)?.[0],result,score,rec});
 }
 
